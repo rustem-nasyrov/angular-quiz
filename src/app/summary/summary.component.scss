@@ -1,0 +1,5 @@
+@import '../../styles';
+
+.answer-card {
+  @extend %default-card;
+}

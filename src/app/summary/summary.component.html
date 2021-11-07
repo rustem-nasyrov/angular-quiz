@@ -1,0 +1,12 @@
+<mat-card *ngIf="!answers.length" class="answer-card">
+  <p>
+    Пожалуйста, ответьте на <a routerLink="/quiz">вопросы</a>.
+  </p>
+</mat-card>
+<mat-card *ngFor="let answer of answers" class="answer-card">
+  <mat-card-title>{{answer.title}}</mat-card-title>
+  <p *ngIf="answer.answer">
+    {{answer.answer}}
+  </p>
+  <i *ngIf="!answer.answer">Без ответа</i>
+</mat-card>

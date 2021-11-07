@@ -1,0 +1,6 @@
+@import '../../styles';
+
+.card {
+  @extend %default-card;
+  text-align: center;
+}

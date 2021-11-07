@@ -1,0 +1,49 @@
+<mat-card class="card">
+  <mat-stepper linear [orientation]="(stepperOrientation | async)!">
+    <mat-step
+            *ngFor="let question of questions"
+            errorMessage="Заполните поле"
+            [stepControl]="form[question.key]"
+    >
+      <form [formGroup]="form[question.key]">
+        <ng-template matStepLabel>{{question.label | uppercase}}</ng-template>
+
+        <!--  Форма ответов на вопросы  -->
+        <mat-form-field>
+          <mat-label>{{question.label}}</mat-label>
+          <input matInput formControlName="field" required>
+        </mat-form-field>
+
+        <!--  Кнопки навигации  -->
+        <div class="quiz-stepper-controls">
+          <button
+                  mat-stroked-button
+                  matStepperPrevious
+                  *ngIf="question.idx !== 1"
+          >
+            Предыдущий вопрос
+          </button>
+
+          <button
+                  mat-stroked-button
+                  matStepperNext
+                  color="primary"
+                  *ngIf="!isLastQuestion(question.idx)"
+          >
+            Следующий вопрос
+          </button>
+
+          <button
+                  mat-flat-button
+                  color="accent"
+                  *ngIf="isLastQuestion(question.idx)"
+                  (click)="saveValues()"
+                  routerLink="/result"
+          >
+            Завершить
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</mat-card>
